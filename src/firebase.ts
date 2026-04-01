@@ -4,14 +4,16 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyD_aV8CeZk37EXYe7NkrJRaI6aoPTUmD3g",
-  authDomain: "healthcare-saas-91502.firebaseapp.com",
-  projectId: "healthcare-saas-91502",
-  storageBucket: "healthcare-saas-91502.firebasestorage.app",
-  messagingSenderId: "728055045233",
-  appId: "1:728055045233:web:5ac2c6cafab9720008cfd0"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: "health-care-saas-4d89c",
+  storageBucket: "health-care-saas-4d89c.firebasestorage.app",
+  messagingSenderId: "133533692694",
+  appId: "1:133533692694:web:bc1b9baafa6d01c0c8d637",
+  measurementId: "G-WJP5M0780H",
 };
 
 // Initialize Firebase
- initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);

@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import "../firebase";
 import { useDispatch } from "react-redux";
@@ -9,7 +9,7 @@ import "../styles/login.css";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [generalError, setGeneralError] = useState("");
@@ -44,15 +44,18 @@ export default function Login() {
   const login = async () => {
     if (!validate()) return;
 
+    setLoading(true);
+
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
 
       dispatch(setUser(res.user));
       navigate("/dashboard");
-
     } catch (e) {
       setGeneralError("Invalid email or password");
       console.error(e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -80,8 +83,8 @@ export default function Login() {
 
         {generalError && <p className="error-text">{generalError}</p>}
 
-        <button className="login-button" onClick={login}>
-          Login
+        <button className="login-button" onClick={login} disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
         </button>
       </div>
     </div>
